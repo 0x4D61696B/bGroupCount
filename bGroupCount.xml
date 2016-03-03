@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Component
+        xmlns="http://www.red5studios.com/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.red5studios.com/ ../../../schemas/component.xsd"
+    >
+
+    <Info
+        title="bGroupCount"
+        author="BurstBiscuit"
+        description="Displays the current count of group members in a text frame"
+        url="https://bitbucket.org/0x4D61696B/bgroupcount"
+        uiVersion="1000"
+    />
+
+    <Events>
+        <Event name="ON_COMPONENT_LOAD"         bind="OnComponentLoad" />
+        <Event name="ON_PLAYER_READY"           bind="OnSquadRosterUpdate" />
+        <Event name="ON_SQUAD_JOIN"             bind="OnSquadRosterUpdate" />
+        <Event name="ON_SQUAD_LEAVE"            bind="OnSquadRosterUpdate" />
+        <Event name="ON_SQUAD_ROSTER_UPDATE"    bind="OnSquadRosterUpdate" />
+    </Events>
+
+    <Frames>
+        <HUDFrame name="Main" dimensions="left: 6%; width: 125; bottom: 100%-3.5; height: 20">
+            <Children>
+                <Text id="Count" dimensions="left: 0; width: 100%; bottom: 100%; height: 20" style="font: UbuntuBold_9; halign: center; valign: center; alpha: 1.0; drop-shadow: 1" />
+            </Children>
+        </HUDFrame>
+    </Frames>
+
+</Component>
