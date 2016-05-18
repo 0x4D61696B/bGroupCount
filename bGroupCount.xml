@@ -14,11 +14,8 @@
     />
 
     <Events>
-        <Event name="ON_COMPONENT_LOAD"         bind="OnComponentLoad" />
-        <Event name="ON_PLAYER_READY"           bind="OnSquadRosterUpdate" />
-        <Event name="ON_SQUAD_JOIN"             bind="OnSquadRosterUpdate" />
-        <Event name="ON_SQUAD_LEAVE"            bind="OnSquadRosterUpdate" />
-        <Event name="ON_SQUAD_ROSTER_UPDATE"    bind="OnSquadRosterUpdate" />
+        <Event name="ON_COMPONENT_LOAD"         bind="OnComponentLoad"      />
+        <Event name="ON_SQUAD_ROSTER_UPDATE"    bind="OnSquadRosterUpdate"  />
     </Events>
 
     <Frames>
@@ -28,5 +25,4 @@
             </Children>
         </HUDFrame>
     </Frames>
-
 </Component>

@@ -6,6 +6,7 @@
 require "math"
 require "table"
 require "unicode"
+
 require "lib/lib_Callback2"
 require "lib/lib_ChatLib"
 require "lib/lib_Debug"
@@ -36,19 +37,21 @@ function UpdateGroupCount()
     if (Platoon.IsInPlatoon()) then
         COUNT:SetText("Platoon (" .. tostring(#Platoon.GetRoster().members) .. "/" .. tostring(Platoon.GetMaxPlatoonSize()) .. ")")
         FRAME:Show(true)
+
     elseif (Squad.IsInSquad()) then
         COUNT:SetText("Squad (" .. tostring(#Squad.GetRoster().members) .. "/" .. tostring(Squad.GetMaxSquadSize()) .. ")")
         FRAME:Show(true)
+
     else
         FRAME:Show(false)
     end
 end
 
-function OnHudShow(show, dur)
-    FRAME:ParamTo("alpha", tonumber(show), dur)
+function OnHudShow(show, duration)
+    FRAME:ParamTo("alpha", tonumber(show), duration)
 end
 
-function OnSlashCommand(args)
+function OnSlashCommand()
     Notification("Showing test values for the text frame")
 
     Callback2.FireAndForget(function()
@@ -67,23 +70,26 @@ end
 -- =============================================================================
 
 function OnComponentLoad()
+    -- Register the frame with InterfaceOptions to save position
     InterfaceOptions.SetCallbackFunc(nil)
     InterfaceOptions.AddMovableFrame({
-        frame = FRAME,
-        label = "bGroupCount",
-        scalable = true,
+        frame       = FRAME,
+        label       = "bGroupCount",
+        scalable    = true
     })
 
+    -- Register with lib_HudManager
     HudManager.BindOnShow(OnHudShow)
 
+    -- Register the slash command
     LIB_SLASH.BindCallback({
-        slash_list = "bgroupcount",
+        slash_list  = "bgroupcount",
         description = "bGroupCount",
-        func = OnSlashCommand
+        func        = OnSlashCommand
     })
 end
 
 function OnSquadRosterUpdate(args)
-    Debug.Table("OnSquadRosterUpdate()", args)
+    Debug.Event(args)
     UpdateGroupCount()
 end
